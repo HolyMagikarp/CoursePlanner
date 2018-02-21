@@ -3,11 +3,10 @@ class Course < ApplicationRecord
   has_and_belongs_to_many :users
   serialize :breadth, Array
 
-  def self.pull_courses(limit=5, skip=0)
+  def self.pull_courses(limit=1, skip=0)
     # num_courses = 16367
     url = "https://cobalt.qas.im/api/1.0/courses?limit=#{limit}&skip=#{skip}&key=EBhgyQ5SmZ3hIRj530U66pUQWVRUXwuY"
     courses = HTTParty.get(url).to_a
-    puts courses
 
     courses.each do |c|
       new_course = Course.create(course_code: c['code'], 
@@ -16,6 +15,7 @@ class Course < ApplicationRecord
                              level: c['level'].to_s,
                              campus: c['campus'],
                              term: c['term'],
+                             description: c['description']
                             )
 
       new_course.course_code[-3] == 'Y' ? new_course.credit_value = 1.0 : new_course.credit_value = 0.5
@@ -37,7 +37,7 @@ end
 #  level        :string(255)
 #  campus       :string(255)
 #  term         :string(255)
-#  description  :string(255)
+#  description  :text(4096)
 #  credit_value :float(24)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
