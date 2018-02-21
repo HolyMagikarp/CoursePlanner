@@ -1,16 +1,16 @@
 module CalendarHelper
-  def calendar(date = Date.today, &block)
-    Calendar.new(self, date, block).table
+  def calendar(&block)
+    Calendar.new(self, block).table
   end
 end
 
-class Calendar < Struct.new(:view, :date, :callback)
+class Calendar < Struct.new(:view, :callback)
     HEADER = %w[Times Monday Tuesday Wednesday Thursday Friday]
 
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: "calendar table table-bordered table-striped" do
+      content_tag :table, class: "calendar table table-bordered" do
         header + time_rows
       end
     end
@@ -24,19 +24,14 @@ class Calendar < Struct.new(:view, :date, :callback)
     def time_rows
       times.map do |time|
         content_tag :tr do
-          time.map { |day| content_tag :td, day }.join.html_safe
+          time.map { |slot| content_tag :td, slot, class: day_classes(slot) }.join.html_safe
         end
       end.join.html_safe
     end
 
-    def day_cell(day)
-      content_tag :td, view.capture(day, &callback), class: day_classes(day)
-    end
-
-    def day_classes(day)
+    def day_classes(slot)
       classes = []
-      classes << "today" if day == Date.today
-      classes << "not-month" if day.month != date.month
+      classes << "selected_course" if slot == 8
       classes.empty? ? nil : classes.join(" ")
     end
 
