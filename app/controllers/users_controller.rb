@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(allowed_params)
-    if @user.save
+    user_params = allowed_params
+    password_confirmation = user_params.delete(:password_confirmation)
+
+    @user = User.new(user_params)
+    if user_params[:password] == password_confirmation && @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: 'Thank you for signing up!'
+      redirect_to planner_path, notice: 'Thank you for signing up!'
     else
-      render :new
+      render :new, notice: 'Error'
     end
   end
 
@@ -20,6 +23,6 @@ class UsersController < ApplicationController
   private
 
   def allowed_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end
