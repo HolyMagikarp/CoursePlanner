@@ -1,0 +1,3 @@
+class PreRequisites < RelatedCourses
+
+end
