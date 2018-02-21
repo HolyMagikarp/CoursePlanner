@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resource :calendar, only: [:show], controller: :calendar
+
   controller :pages do
     get :planner
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
