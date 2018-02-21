@@ -23,3 +23,5 @@ test/*
 
 .ruby-version
 db/schema.rb
+
+*.sql

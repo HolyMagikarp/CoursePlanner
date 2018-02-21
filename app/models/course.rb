@@ -33,12 +33,12 @@ end
 #  id           :integer          not null, primary key
 #  course_code  :string(255)
 #  name         :string(255)
-#  breadth      :array
-#  level        :string(255)
-#  campus       :string(255)
-#  term         :string(255)
-#  description  :text(4096)
+#  breadth      :string(255)
 #  credit_value :float(24)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  level        :string(255)
+#  campus       :string(255)
+#  term         :string(255)
+#  description  :text(65535)
 #
