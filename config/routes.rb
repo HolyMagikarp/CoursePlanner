@@ -2,5 +2,10 @@ Rails.application.routes.draw do
   controller :pages do
     get :planner
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'users/new'
+  get 'login', to: 'sessions#new', as: 'login'
+  root to: 'sessions#new'
+
+  resources :users
+  resources :sessions
 end
