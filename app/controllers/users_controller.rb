@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to planner_path, notice: 'Thank you for signing up!'
     else
+      flash.now.alert = 'Username or password is invalid'
       render :new, notice: 'Error'
     end
   end
