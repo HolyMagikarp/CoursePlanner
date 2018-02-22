@@ -2,6 +2,9 @@ class PagesController < ApplicationController
 
   def planner
     set_courses
+    @user = User.find_by_id(session[:user_id])
+    @programs = @user.programs
+    @lectures = @user.lectures
   end
 
   def _course_listing
@@ -9,8 +12,9 @@ class PagesController < ApplicationController
                                                                 per_page: 50)
   end
 
-  def program_requirements
-    render "programs/program_requirements"
+  def _programs
+    @user = User.find_by_id(session[:user_id])
+    @programs = @user.programs
   end
 
   def set_courses
@@ -18,4 +22,7 @@ class PagesController < ApplicationController
                                                                 per_page: 50)
   end
 
+  def lectures
+    render :json => ['cell-8-1', 'cell-9-1']
+  end
 end

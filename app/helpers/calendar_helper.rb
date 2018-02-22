@@ -24,12 +24,19 @@ class Calendar < Struct.new(:view, :date, :callback)
     def time_rows
       times.map do |time|
         content_tag :tr do
-          time.map { |slot| content_tag :td, slot, class: day_classes(slot) }.join.html_safe
+          col = -1
+          row = time[0]
+          time.map do |slot| 
+            col += 1
+            content_tag :td, slot, class: get_classes(slot), id: "cell-#{row}-#{col}",
+            onclick: "toggle(this)"
+          end.join.html_safe
+
         end
       end.join.html_safe
     end
 
-    def day_classes(slot)
+    def get_classes(slot)
       classes = []
       classes << "selected_course" if slot == 8
       classes.empty? ? nil : classes.join(" ")

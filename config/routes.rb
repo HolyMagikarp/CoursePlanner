@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get :planner
     get :program_requirements
     get :_course_listing
+    get :lectures
   end
 
   get 'users/new'
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :calendar
 end
