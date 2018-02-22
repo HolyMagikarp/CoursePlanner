@@ -1,4 +1,5 @@
 first_year:
+  description:  'first year course requirements'
   credits: 2.5
   courses: [
     [["csc108", "csc148"]],
@@ -8,6 +9,7 @@ first_year:
 
 
 second_year:
+  description:  'second year course requirements'
   credits: 2.5
   courses: [
     [["csc207"]],
@@ -18,6 +20,7 @@ second_year:
   ]
 
 later_years:
+  descripttion: '3.0 FCE of 200/300/400 level CSC courses'
   credits: 3.0
   courses: [
   ]
