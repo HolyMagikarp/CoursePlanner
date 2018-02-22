@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
   def planner
     set_courses
-    puts @courses.count
   end
 
   def _course_listing
