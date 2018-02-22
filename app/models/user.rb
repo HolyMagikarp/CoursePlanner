@@ -8,11 +8,13 @@ class User < ApplicationRecord
 
   def enroll_course(course, lecture_code)
     self.lectures << course.lectures.where(:lecture_code => lecture_code)
+    self.courses << course
     self.save!
   end
 
   def drop_course(course)
     self.lectures = self.lectures - course.lectures
+    self.courses = self.courses - course
     self.save!
   end
 
