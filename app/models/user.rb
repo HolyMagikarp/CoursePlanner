@@ -14,14 +14,14 @@ class User < ApplicationRecord
   end
 
   def drop_course(course)
-    self.lectures = self.lectures - course.lectures
-    self.courses = self.courses - course
+    self.lectures = self.lectures.select { |l| l.course.id != course.id }
+    self.courses = self.courses.select { |c| c.id != course.id }
     self.save!
   end
 
   def add_credit(course)
     return if self.credits.map(&:course_id).include?(course.id)
-    self.credits.create!(:course => course)
+    self.credits.create!(:course_id => course.id)
   end
 
   def remove_credit(course)

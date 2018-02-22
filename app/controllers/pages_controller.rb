@@ -29,8 +29,16 @@ class PagesController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     lecture_code = params[:lecture_code]
     course = Course.find(params[:course_id])
-    @user.enroll_course(course, lecture_code)
 
+    if @user.courses.include?(course)
+      @user.drop_course(course)
+      @user.remove_credit(course)
+    else
+      @user.enroll_course(course, lecture_code)
+      @user.add_credit(course)
+    end
+
+    render :js => "load_lectures_into_calendar()"
   end
 
   private
