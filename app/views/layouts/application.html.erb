@@ -3,7 +3,15 @@
 <script type="text/javascript">
   function load_lectures_into_calendar() {
     $.ajax({url: "/enrolled_lectures", type: 'GET', success: function(result){
-      for (i=0; i < result.length; i++) {
+      for (row=8; row<=22; row++) {
+        for (col=1; col<=5; col++) {
+          console.log('#cell-' + row + '-' + col)
+          $('#cell-' + row + '-' + col).css({"background-color": '#ffffff'}); 
+          $('#cell-' + row + '-' + col).text(''); 
+        }
+      }
+      for (i=0; i<result.length; i++) {
+        // console.log('#' + result[i]['id'])
         $('#' + result[i]['id']).css({"background-color": '#c1c1d7'}); 
         $('#' + result[i]['id']).text(result[i]['course']); 
       }

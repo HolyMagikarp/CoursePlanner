@@ -38,6 +38,8 @@ class PagesController < ApplicationController
       @user.add_credit(course)
     end
 
+    puts @user.courses.map(&:course_code)
+
     render :js => "load_lectures_into_calendar()"
   end
 
