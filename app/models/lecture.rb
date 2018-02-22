@@ -3,6 +3,26 @@ class Lecture < ApplicationRecord
   belongs_to :course
 
   serialize :professor, Array
+
+  def self.get_similar_lectures(course_id, lecture_code)
+    result = OpenStruct.new(course_id: course_id,
+                            lecture_code: lecture_code,
+                            times: [])
+
+    Lecture.where(course_id: course_id, lecture_code: lecture_code).each do |l|
+      result.location = l.location
+      result.professor = l.professor.join(', ')
+      result.times.append "#{l.day[0..2]} "\
+                      "#{l.start_time.strftime("%I:%M %p")} - "\
+                      "#{l.end_time.strftime("%I:%M %p")}"
+    end
+    result
+  end
+
+  def self.format_lectures_string(lecture)
+    "<u>#{lecture.location}</u> <em>#{lecture.professor}</em><br/>"\
+    "#{lecture.times.join("<br/>")}".html_safe
+  end
 end
 
 # == Schema Information

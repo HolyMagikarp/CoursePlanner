@@ -1,4 +1,10 @@
-<h1>Course Listing</h1>
+
+<script>
+    $(document).on("ready page:change", function() {
+        $('button').tooltip();
+    });
+</script>
+
 <div>
   TODO: Search
 </div>
@@ -6,7 +12,7 @@
   <table class='table-fixed col-md-3'>
     <tr>
       <td>course_code</td>
-      <td>name</td>
+      <!--<td>name</td>-->
       <!--<td>description</td>-->
       <!--<td>breadth</td>-->
       <!--<td>level</td>-->
@@ -16,7 +22,7 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.course_code %></td>
-        <td><%= course.name %></td>
+        <!--<td><%= course.name %></td>-->
         <!--<td><%= course.description %></td>-->
         <!--<td><%= course.breadth %></td>-->
         <!--<td><%= course.level %></td>-->
@@ -25,7 +31,17 @@
       </tr>
       <tr>
         <td colspan="4">
-          TODO: Lectures lol
+          <% course.lectures.map(&:lecture_code).uniq.sort.each do |lecture_code| %>
+              <%
+                lecture_info = Lecture.get_similar_lectures(course.id, lecture_code)
+                html_msg = Lecture.format_lectures_string(lecture_info)
+                puts html_msg
+              %>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                      data-html="true" title="<%= html_msg %>" >
+                <%= lecture_code %>
+              </button>
+          <% end %>
         </td>
       </tr>
     <% end %>

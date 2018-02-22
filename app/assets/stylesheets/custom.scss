@@ -35,13 +35,12 @@ body {
   color: $gray5;
 }
 
-
 .table-fixed {
-  height:66vh;
+  height:592px;
   overflow-y: scroll;
 
   thead, tbody{
-    height: 66vh;
+    height: 592px;
     overflow-y: auto;
     display: block;
   }
