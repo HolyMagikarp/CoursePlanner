@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
   def planner
     set_courses
-    puts @courses.count
     @user = User.find_by_id(session[:user_id])
     @programs = @user.programs
     @lectures = @user.lectures
