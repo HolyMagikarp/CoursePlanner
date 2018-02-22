@@ -4,7 +4,6 @@ class PagesController < ApplicationController
     set_courses
     @user = User.find_by_id(session[:user_id])
     @programs = @user.programs
-    @lectures = @user.lectures
   end
 
   def _programs
@@ -18,13 +17,12 @@ class PagesController < ApplicationController
   end
 
   def enrolled_lectures
-
-    render :json => ['cell-8-1', 'cell-9-1']
-    # ids = []
-    # @user.lectures.each do |l|
-    #   ids << lecture_to_cells(l.start_time, l.end_time, l.day)
-    # end
-
+    ids = []
+    @user = User.find_by_id(session[:user_id])
+    @user.lectures.each do |l|
+      ids << lecture_to_cells(l.start_time, l.end_time, l.day)
+    end
+    render :json => ids.flatten
   end
 
   private
@@ -46,8 +44,8 @@ class PagesController < ApplicationController
       col = 5
     end
 
-    (start_time..end_time).each do |row|
-      cells << "cell-#{row}-#{col}"
+    (start_time..end_time).map do |row|
+      "cell-#{row}-#{col}"
     end
   end
 end
