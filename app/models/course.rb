@@ -56,6 +56,11 @@ class Course < ApplicationRecord
       where('term REGEXP ? AND breadth IS NOT NULL', '2018 Winter').distinct
   end
 
+  def display_string
+    "<em>#{name}</em> #{description}<br/>"\
+    "Breadth: #{breadth.join(', ')}, Level: #{level}"
+  end
+
 end
 
 # == Schema Information
