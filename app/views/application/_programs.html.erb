@@ -1,0 +1,7 @@
+<h1>Program Name: <%= program.name%></h1>
+<% @requirements.each do |req, data| %>
+  <p><%= data[:description]%></p>
+    <% data[:courses].each do |option| %>
+      <p><%= option.map { |o|"(#{o.join(", ")})" }.join(" or ")%></p>
+    <% end %>
+<% end %>
