@@ -8,16 +8,16 @@
   <% if @courses.any? %>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.course_code %></td>
+        <td data-toggle="tooltip" data-placement="left" title="Hooray!">
+          <%= "#{course.course_code}\t#{course.campus}\t#{course.term}" %>
+        </td>
         <!--<td><%= course.name %></td>-->
         <!--<td><%= course.description %></td>-->
         <!--<td><%= course.breadth %></td>-->
         <!--<td><%= course.level %></td>-->
-        <td><%= course.campus %></td>
-        <td><%= course.term %></td>
       </tr>
       <tr>
-        <td colspan="4">
+        <td>
           <% course.lectures.map(&:lecture_code).uniq.sort.each do |lecture_code| %>
               <%
                 lecture_info = Lecture.get_similar_lectures(course.id, lecture_code)
@@ -34,13 +34,15 @@
       </tr>
     <% end %>
       <tr>
-        <td colspan="4">
-          Refine your search term to see more
+        <td>
+          Refine your search term to see more.
         </td>
       </tr>
   <% else %>
-    <div>
-      TODO: Search Prompt
-    </div>
+      <tr>
+        <td>
+          Refine your search term to see more.
+        </td>
+      </tr>
   <% end %>
 </table>
