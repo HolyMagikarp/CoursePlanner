@@ -43,6 +43,14 @@ class Course < ApplicationRecord
 
   end
 
+  def self.search(query)
+    if query.present?
+      where('course_code LIKE ?', "%#{query}%")
+    else
+      Course.where(id: 0)
+    end
+  end
+
   def self.for_display
     self.joins(:lectures).
       where('term REGEXP ? AND breadth IS NOT NULL', '2018|2017').distinct

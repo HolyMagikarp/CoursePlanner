@@ -1,24 +1,14 @@
-
-<script>
-    $(document).on("ready page:change", function() {
-        $('button').tooltip();
-    });
-</script>
-
-<div>
-  TODO: Search
-</div>
-<div class="table-container">
-  <table class='table-fixed col-md-3'>
-    <tr>
-      <td>course_code</td>
-      <!--<td>name</td>-->
-      <!--<td>description</td>-->
-      <!--<td>breadth</td>-->
-      <!--<td>level</td>-->
-      <td>campus</td>
-      <td>term</td>
-    </tr>
+<table class='table-fixed col-md-3'>
+  <!--<tr>-->
+    <!--<td>course_code</td>-->
+    <!--<td>name</td>-->
+    <!--<td>description</td>-->
+    <!--<td>breadth</td>-->
+    <!--<td>level</td>-->
+    <!--<td>campus</td>-->
+    <!--<td>term</td>-->
+  <!--</tr>-->
+  <% if @courses.any? %>
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.course_code %></td>
@@ -37,6 +27,7 @@
                 html_msg = Lecture.format_lectures_string(lecture_info)
                 puts html_msg
               %>
+
               <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                       data-html="true" title="<%= html_msg %>" >
                 <%= lecture_code %>
@@ -45,5 +36,9 @@
         </td>
       </tr>
     <% end %>
-  </table>
-</div>
+  <% else %>
+    <div>
+      TODO: Search Prompt
+    </div>
+  <% end %>
+</table>

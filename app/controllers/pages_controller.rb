@@ -17,8 +17,8 @@ class PagesController < ApplicationController
   end
 
   def set_courses
-    @courses = Course.for_display.order('course_code').paginate(page: params[:page],
-                                                                per_page: 50)
+    @courses = Course.for_display.search(params[:search]).paginate(page: params[:page],
+                                                                   per_page: 50)
   end
 
   def enrolled_lectures
