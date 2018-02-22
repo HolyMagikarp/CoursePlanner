@@ -1,13 +1,10 @@
-<table class='table-fixed col-md-3'>
-  <!--<tr>-->
-    <!--<td>course_code</td>-->
-    <!--<td>name</td>-->
-    <!--<td>description</td>-->
-    <!--<td>breadth</td>-->
-    <!--<td>level</td>-->
-    <!--<td>campus</td>-->
-    <!--<td>term</td>-->
-  <!--</tr>-->
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<table class='table-fixed'>
   <% if @courses.any? %>
     <% @courses.each do |course| %>
       <tr>
@@ -36,6 +33,11 @@
         </td>
       </tr>
     <% end %>
+      <tr>
+        <td colspan="4">
+          Refine your search term to see more
+        </td>
+      </tr>
   <% else %>
     <div>
       TODO: Search Prompt

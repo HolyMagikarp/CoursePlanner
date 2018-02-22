@@ -7,11 +7,6 @@ class PagesController < ApplicationController
     @lectures = @user.lectures
   end
 
-  def _course_listing
-    @courses = Course.for_display.order('course_code').paginate(page: params[:page],
-                                                                per_page: 50)
-  end
-
   def _programs
     @user = User.find_by_id(session[:user_id])
     @programs = @user.programs
@@ -19,7 +14,7 @@ class PagesController < ApplicationController
 
   def set_courses
     @courses = Course.for_display.search(params[:search]).paginate(page: params[:page],
-                                                                   per_page: 50)
+                                                                   per_page: 100)
   end
 
   def enrolled_lectures

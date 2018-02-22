@@ -1,10 +1,6 @@
 <h1>Course Planner</h1>
 
 <script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
     $(function() {
         $("#courses_search input").keyup(function() {
             $.get($("#courses_search").attr("action"), $("#courses_search").serialize(), null, "script");
@@ -14,15 +10,17 @@
     $("#courses").html("<%= escape_javascript(render("course_listing")) %>");
 </script>
 
+<div class="col-md-3">
 <%= form_tag planner_path, :method => 'get', :id => "courses_search" do %>
     <p>
-      <%= text_field_tag :search, params[:search] %>
+      <%= text_field_tag :search, params[:search], autocomplete: :off, placeholder: 'Search Courses' %>
     </p>
 
     <div id="courses">
       <%= render partial: 'course_listing' %>
     </div>
 <% end %>
+</div>
 
 <div class="row">
   <div class="col-md-8">

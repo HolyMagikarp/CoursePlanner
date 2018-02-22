@@ -67,11 +67,11 @@ body {
       }
     }
 
-    &:nth-child(odd) {
+    &:nth-child(even) {
       background-color: white;
     }
 
-    &:nth-child(even) {
+    &:nth-child(odd) {
       background-color: #F9F9F9;
     }
   }
