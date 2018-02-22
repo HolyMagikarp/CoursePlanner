@@ -5,44 +5,35 @@
 </script>
 
 <table class='table-fixed'>
-  <% if @courses.any? %>
-    <% @courses.each do |course| %>
-      <tr>
-        <td data-toggle="tooltip" data-placement="left" title="Hooray!">
-          <%= "#{course.course_code}\t#{course.campus}\t#{course.term}" %>
-        </td>
-        <!--<td><%= course.name %></td>-->
-        <!--<td><%= course.description %></td>-->
-        <!--<td><%= course.breadth %></td>-->
-        <!--<td><%= course.level %></td>-->
-      </tr>
-      <tr>
-        <td>
-          <% course.lectures.map(&:lecture_code).uniq.sort.each do |lecture_code| %>
-              <%
-                lecture_info = Lecture.get_similar_lectures(course.id, lecture_code)
-                html_msg = Lecture.format_lectures_string(lecture_info)
-                puts html_msg
-              %>
+  <% @courses.each do |course| %>
+    <tr>
+      <td data-toggle="tooltip" data-placement="left" title="Hooray!">
+        <%= "#{course.course_code}\t#{course.campus}\t#{course.term}" %>
+      </td>
+      <!--<td><%= course.name %></td>-->
+      <!--<td><%= course.description %></td>-->
+      <!--<td><%= course.breadth %></td>-->
+      <!--<td><%= course.level %></td>-->
+    </tr>
+    <tr>
+      <td>
+        <% course.lectures.map(&:lecture_code).uniq.sort.each do |lecture_code| %>
+            <%
+              lecture_info = Lecture.get_similar_lectures(course.id, lecture_code)
+              html_msg = Lecture.format_lectures_string(lecture_info)
+              puts html_msg
+            %>
+            <%= link_to lecture_code, add_lecture_path(:lecture_code => lecture_code, :course_id => course.id),
+                        method: :post, remote: true, class: "button btn btn-secondary add-lecture", :"data-toggle" => "tooltip",
+                        :"data-placement" => "top", :"data-html" => "true", :"title" => html_msg%>
 
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                      data-html="true" title="<%= html_msg %>" >
-                <%= lecture_code %>
-              </button>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-      <tr>
-        <td>
-          Refine your search term to see more.
-        </td>
-      </tr>
-  <% else %>
-      <tr>
-        <td>
-          Refine your search term to see more.
-        </td>
-      </tr>
+
+            <!--<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"-->
+                    <!--data-html="true" title="<%= html_msg %>" >-->
+              <!--<%= lecture_code %>-->
+            <!--</button>-->
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>
