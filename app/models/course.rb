@@ -53,7 +53,7 @@ class Course < ApplicationRecord
 
   def self.for_display
     self.joins(:lectures).
-      where('term REGEXP ? AND breadth IS NOT NULL', '2018|2017').distinct
+      where('term REGEXP ? AND breadth IS NOT NULL', '2018 Winter').distinct
   end
 
 end
