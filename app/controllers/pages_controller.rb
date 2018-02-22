@@ -19,4 +19,7 @@ class PagesController < ApplicationController
                                                                 per_page: 50)
   end
 
+  def lectures
+    render :json => ['cell-8-1', 'cell-9-1']
+  end
 end

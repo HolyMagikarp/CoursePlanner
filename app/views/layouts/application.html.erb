@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+  function toggle(it) {
+    if ((it.style.backgroundColor == "none") || (it.style.backgroundColor == ""))
+      {it.style.backgroundColor = "yellow";}
+    else
+      {it.style.backgroundColor = "";
+  }
+}
+
+  function go() {
+    $.ajax({url: "/lectures", type: 'GET', success: function(result){
+      for (i=0; i < result.length; i++) {
+        $('#' + result[i]).css({"background-color":"blue"}); 
+      }
+    }});
+  }
+</script>
 <head>
   <title>Course Planner</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>

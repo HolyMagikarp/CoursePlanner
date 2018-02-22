@@ -3,6 +3,11 @@ class Course < ApplicationRecord
   has_and_belongs_to_many :users
   serialize :breadth, Array
 
+
+  def self.get_time(seconds)
+    Time.at(seconds).utc.strftime("%I:%M%p")
+  end
+
   def self.pull_courses(limit=1, skip=0)
     # num_courses = 16367
     url = "https://cobalt.qas.im/api/1.0/courses?limit=#{limit}&skip=#{skip}&key=EBhgyQ5SmZ3hIRj530U66pUQWVRUXwuY"
@@ -19,14 +24,14 @@ class Course < ApplicationRecord
                             )
       new_course.course_code[-3] == 'Y' ? new_course.credit_value = 1.0 : new_course.credit_value = 0.5
       new_course.save!
-
+      
       meeting_sections = c['meeting_sections']
       meeting_sections.each do |m|
-        m.each do |l|
+        m['times'].each do |l|
           Lecture.create(lecture_code: m['code'],
                          professor: m['instructors'],
-                         start_time: get_time(l['start']),
-                         end_time: get_time(l['end']),
+                         start_time: Course.get_time(l['start']),
+                         end_time: Course.get_time(l['end']),
                          duration: l['duration'] / 3600,
                          day: l['day'],
                          location: l['location'],
@@ -35,10 +40,7 @@ class Course < ApplicationRecord
         end
       end
     end
-  end
 
-  def get_time(seconds)
-    Time.at(seconds).utc.strftime("%I:%M%p")
   end
 
   def self.for_display
