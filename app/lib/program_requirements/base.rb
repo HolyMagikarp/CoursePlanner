@@ -40,6 +40,7 @@ module ProgramRequirements
         req.each do |option|
           option.each do |o|
             course = Course.where("course_code LIKE '%#{o}%'").first
+            next if course.blank?
             courses << course unless taken_courses.include?(course.id)
           end
         end

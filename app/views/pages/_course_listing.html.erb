@@ -5,6 +5,10 @@
 </script>
 
 <table class='table-fixed'>
+  <% unless @courses.any? %>
+    <% @courses = @user.programs.map { |p| p.requirements.suggested_courses(@user)}.flatten %>
+  <% end %>
+  
   <% @courses.each do |course| %>
     <tr>
       <td data-toggle="tooltip" data-placement="bottom" title="<%= course.display_string%>" data-html="true">
