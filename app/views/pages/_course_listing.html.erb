@@ -1,0 +1,33 @@
+<h1>Course Listing</h1>
+<div>
+  TODO: Search
+</div>
+<div class="table-container">
+  <table class='table-fixed col-md-3'>
+    <tr>
+      <td>course_code</td>
+      <td>name</td>
+      <!--<td>description</td>-->
+      <!--<td>breadth</td>-->
+      <!--<td>level</td>-->
+      <td>campus</td>
+      <td>term</td>
+    </tr>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.course_code %></td>
+        <td><%= course.name %></td>
+        <!--<td><%= course.description %></td>-->
+        <!--<td><%= course.breadth %></td>-->
+        <!--<td><%= course.level %></td>-->
+        <td><%= course.campus %></td>
+        <td><%= course.term %></td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          TODO: Lectures lol
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

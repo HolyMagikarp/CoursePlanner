@@ -1,7 +1,9 @@
 <h1>Course Planner</h1>
-<p>Find me in app/views/pages/planner.html.erb</p>
+
+<%= render partial: 'course_listing', object: @courses %>
+
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8">
     <%= calendar @date do |date| %>
       <%= date.day %>
     <% end %>

@@ -35,29 +35,16 @@ body {
   color: $gray5;
 }
 
-.table-fixed{
-  height: 400px !important;
+
+.table-fixed {
+  height:66vh;
   overflow-y: scroll;
 
-  thead {
-    overflow-y: auto;
-  }
-
-  tbody {
-    height: 230px;
-    overflow-y: auto;
-  }
-
   thead, tbody{
+    height: 66vh;
+    overflow-y: auto;
     display: block;
   }
-
-  tbody td, thead > tr> th {
-    float: left;
-  }
-}
-
-body table.default {
   tr {
     &:first-child {
       td, th {
