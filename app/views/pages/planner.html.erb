@@ -1,12 +1,5 @@
 <h1>Course Planner</h1>
 
-<script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    $("#hint a").tooltip()
-</script>
-
 <%= render partial: 'course_listing', object: @courses %>
 
 <div class="row">
@@ -19,3 +12,4 @@
 
 <h1>Program Requirements</h1>
 <%= render partial: "programs", collection: @programs%>
+

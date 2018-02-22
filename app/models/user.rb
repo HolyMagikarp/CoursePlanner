@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
 
   def enroll_course(course, lecture_code)
+    return if self.courses.include?(course)
     self.lectures << course.lectures.where(:lecture_code => lecture_code)
     self.courses << course
     self.save!
@@ -19,6 +20,7 @@ class User < ApplicationRecord
   end
 
   def add_credit(course)
+    return if self.credits.map(&:course_id).include?(course.id)
     self.credits.create!(:course => course)
   end
 

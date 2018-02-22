@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get :program_requirements
     get :_course_listing
     get :enrolled_lectures
+    post :add_lecture
   end
 
   get 'users/new'

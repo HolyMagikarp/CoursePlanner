@@ -3,6 +3,10 @@
     $(document).on("ready page:change", function() {
         $('button').tooltip();
     });
+
+
+
+
 </script>
 
 <div>
@@ -37,10 +41,16 @@
                 html_msg = Lecture.format_lectures_string(lecture_info)
                 puts html_msg
               %>
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                      data-html="true" title="<%= html_msg %>" >
-                <%= lecture_code %>
-              </button>
+
+              <%= link_to lecture_code, add_lecture_path(:lecture_code => lecture_code, :course_id => course.id),
+                          method: :post, remote: true, class: "button btn btn-secondary add-lecture", :"data-toggle" => "tooltip",
+                          :"data-placement" => "top", :"data-html" => "true", :"title" => html_msg%>
+
+
+              <!--<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"-->
+                      <!--data-html="true" title="<%= html_msg %>" >-->
+                <!--<%= lecture_code %>-->
+              <!--</button>-->
           <% end %>
         </td>
       </tr>
