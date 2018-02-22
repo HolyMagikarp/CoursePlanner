@@ -1,12 +1,36 @@
 <h1>Course Planner</h1>
 
 <%= render partial: 'course_listing', object: @courses %>
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $("#hint a").tooltip()
+
+    load_lectures_into_calendar()
+
+    $(function() {
+        $("#courses_search input").keyup(function() {
+            $.get($("#courses_search").attr("action"), $("#courses_search").serialize(), null, "script");
+            return false;
+        });
+    });
+    $("#courses").html("<%= escape_javascript(render("course_listing")) %>");
+</script>
+
+<%= form_tag planner_path, :method => 'get', :id => "courses_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+    </p>
+
+    <div id="courses">
+      <%= render partial: 'course_listing' %>
+    </div>
+<% end %>
 
 <div class="row">
   <div class="col-md-8">
-    <%= calendar @date do |date| %>
-      <%= date.day %>
-    <% end %>
+    <%= calendar %>
   </div>
 </div>
 
