@@ -9,7 +9,8 @@ class PagesController < ApplicationController
   end
 
   def program_requirements
-    render "programs/program_requirements"
+    @user = User.find_by_id(session[:user_id])
+    @programs = @user.programs
   end
 
 end

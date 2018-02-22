@@ -1,0 +1,31 @@
+higher_years_req1:
+  description:  'all of these courses'
+  credits: 1.0
+  courses: [
+    [["env221", "env222"]],
+    [["psy220"]],
+    [["psy335", "psy435"]],
+  ]
+
+higher_years_req2:
+  description:  'one FCE from the following'
+  credits: 1.0
+  courses: [
+    [["env333", "env335"]],
+    [["env361"], ["env381"]],
+    [["jge321"]],
+    [["jge331"]],
+    [["soc385"]],
+  ]
+
+higher_years_req3:
+  description:  'one FCE from the following'
+  credits: 1.0
+  courses: [
+    [["psy320"]],
+    [["psy321"]],
+    [["psy327"], ["psy427"]],
+    [["psy336"]]
+  ]
+
+

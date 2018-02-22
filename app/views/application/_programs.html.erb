@@ -1,6 +1,22 @@
-<h1>Program Name: <%= program.name%></h1>
-<% @requirements.each do |req, data| %>
+<style type="text/css">
+  .progress_bar {
+    background-color:#e6e6e6
+  }
+
+  .progress {
+    background-color:#00ff00
+  }
+</style>
+
+
+<h1>Program Name: <%= programs.name.gsub("_", " ").split.map(&:capitalize).join(' ')%></h1>
+<% programs.requirements.course_requirements.each do |req, data| %>
   <p><%= data[:description]%></p>
+    <% progress = programs.requirements.check_requirement_progress(@user, req)%>
+    <p>Progress: <span><%=  progress%>/<%= data[:credits]%></span></p>
+    <div class="progress_bar">
+      <%= content_tag :div, progress, :style => "width:#{progress/data[:credits]*100}%;", :class => "progress"%>
+    </div>
     <% data[:courses].each do |option| %>
       <p><%= option.map { |o|"(#{o.join(", ")})" }.join(" or ")%></p>
     <% end %>
