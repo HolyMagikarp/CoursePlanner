@@ -7,13 +7,9 @@
 <table class='table-fixed'>
   <% @courses.each do |course| %>
     <tr>
-      <td data-toggle="tooltip" data-placement="left" title="Hooray!">
+      <td data-toggle="tooltip" data-placement="bottom" title="<%= course.display_string%>" data-html="true">
         <%= "#{course.course_code}\t#{course.campus}\t#{course.term}" %>
       </td>
-      <!--<td><%= course.name %></td>-->
-      <!--<td><%= course.description %></td>-->
-      <!--<td><%= course.breadth %></td>-->
-      <!--<td><%= course.level %></td>-->
     </tr>
     <tr>
       <td>
