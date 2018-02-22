@@ -1,0 +1,26 @@
+first_year:
+  description:  'first year course requirements'
+  credits: 2.5
+  courses: [
+    [["csc108", "csc148"]],
+    [["csc165"], ["csc240"]],
+    [["mat135", "mat136"], ["mat137"], ["mat157"]]
+  ]
+
+
+second_year:
+  description:  'second year course requirements'
+  credits: 2.5
+  courses: [
+    [["csc207"]],
+    [["csc236"], ["csc240"]],
+    [["csc258"]],
+    [["csc263"], ["csc265"]],
+    [["sta247"], ["sta255"], ["sta257"]]
+  ]
+
+later_years:
+  descripttion: '3.0 FCE of 200/300/400 level CSC courses'
+  credits: 3.0
+  courses: [
+  ]

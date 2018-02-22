@@ -41,6 +41,9 @@ class Course < ApplicationRecord
     Time.at(seconds).utc.strftime("%I:%M%p")
   end
 
+  def self.for_display
+    self.where('term REGEXP ? AND breadth IS NOT NULL', '2018|2017')
+  end
 end
 
 # == Schema Information
