@@ -30,6 +30,14 @@ class PagesController < ApplicationController
     render :json => result.flatten
   end
 
+  def add_lecture
+    @user = User.find_by_id(session[:user_id])
+    lecture_code = params[:lecture_code]
+    course = Course.find(params[:course_id])
+    @user.enroll_course(course, lecture_code)
+
+  end
+
   private
 
   def lecture_to_cells(start_time, end_time, day, course_id)

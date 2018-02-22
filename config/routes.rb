@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get :planner
     get :program_requirements
     get :enrolled_lectures
+    post :add_lecture
   end
 
   get 'users/new'

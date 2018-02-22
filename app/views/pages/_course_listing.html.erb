@@ -1,13 +1,16 @@
+
+<script>
+    $(document).on("ready page:change", function() {
+        $('button').tooltip();
+    });
+
+
+
+
+</script>
+
+
 <table class='table-fixed col-md-3'>
-  <!--<tr>-->
-    <!--<td>course_code</td>-->
-    <!--<td>name</td>-->
-    <!--<td>description</td>-->
-    <!--<td>breadth</td>-->
-    <!--<td>level</td>-->
-    <!--<td>campus</td>-->
-    <!--<td>term</td>-->
-  <!--</tr>-->
   <% if @courses.any? %>
     <% @courses.each do |course| %>
       <tr>
@@ -27,11 +30,15 @@
                 html_msg = Lecture.format_lectures_string(lecture_info)
                 puts html_msg
               %>
+              <%= link_to lecture_code, add_lecture_path(:lecture_code => lecture_code, :course_id => course.id),
+                          method: :post, remote: true, class: "button btn btn-secondary add-lecture", :"data-toggle" => "tooltip",
+                          :"data-placement" => "top", :"data-html" => "true", :"title" => html_msg%>
 
-              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                      data-html="true" title="<%= html_msg %>" >
-                <%= lecture_code %>
-              </button>
+
+              <!--<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"-->
+                      <!--data-html="true" title="<%= html_msg %>" >-->
+                <!--<%= lecture_code %>-->
+              <!--</button>-->
           <% end %>
         </td>
       </tr>
