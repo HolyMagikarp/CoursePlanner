@@ -1,10 +1,10 @@
 module CalendarHelper
-  def calendar(&block)
-    Calendar.new(self, block).table
+  def calendar(date = Date.today, &block)
+    Calendar.new(self, date, block).table
   end
 end
 
-class Calendar < Struct.new(:view, :callback)
+class Calendar < Struct.new(:view, :date, :callback)
     HEADER = %w[Times Monday Tuesday Wednesday Thursday Friday]
 
     delegate :content_tag, to: :view

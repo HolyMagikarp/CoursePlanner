@@ -17,10 +17,28 @@ class Course < ApplicationRecord
                              term: c['term'],
                              description: c['description']
                             )
-
       new_course.course_code[-3] == 'Y' ? new_course.credit_value = 1.0 : new_course.credit_value = 0.5
       new_course.save!
+
+      meeting_sections = c['meeting_sections']
+      meeting_sections.each do |m|
+        m.each do |l|
+          Lecture.create(lecture_code: m['code'],
+                         professor: m['instructors'],
+                         start_time: get_time(l['start']),
+                         end_time: get_time(l['end']),
+                         duration: l['duration'] / 3600,
+                         day: l['day'],
+                         location: l['location'],
+                         course_id: new_course.id
+                        )
+        end
+      end
     end
+  end
+
+  def get_time(seconds)
+    Time.at(seconds).utc.strftime("%I:%M%p")
   end
 
   def self.for_display
