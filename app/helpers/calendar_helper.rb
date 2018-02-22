@@ -28,8 +28,7 @@ class Calendar < Struct.new(:view, :callback)
           row = time[0]
           time.map do |slot| 
             col += 1
-            content_tag :td, slot, id: "cell-#{row}-#{col}",
-            onclick: "toggle(this)"
+            content_tag :td, slot, id: "cell-#{row}-#{col}"
           end.join.html_safe
 
         end
