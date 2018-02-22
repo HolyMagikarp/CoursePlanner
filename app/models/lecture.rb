@@ -1,6 +1,8 @@
 class Lecture < ApplicationRecord
   has_and_belongs_to_many :users
   belongs_to :course
+
+  serialize :professor, Array
 end
 
 # == Schema Information
