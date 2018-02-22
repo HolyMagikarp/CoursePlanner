@@ -1,10 +1,10 @@
 module CalendarHelper
-  def calendar(date = Date.today, &block)
-    Calendar.new(self, date, block).table
+  def calendar(&block)
+    Calendar.new(self, block).table
   end
 end
 
-class Calendar < Struct.new(:view, :date, :callback)
+class Calendar < Struct.new(:view, :callback)
     HEADER = %w[Times Monday Tuesday Wednesday Thursday Friday]
 
     delegate :content_tag, to: :view
@@ -28,18 +28,12 @@ class Calendar < Struct.new(:view, :date, :callback)
           row = time[0]
           time.map do |slot| 
             col += 1
-            content_tag :td, slot, class: get_classes(slot), id: "cell-#{row}-#{col}",
+            content_tag :td, slot, id: "cell-#{row}-#{col}",
             onclick: "toggle(this)"
           end.join.html_safe
 
         end
       end.join.html_safe
-    end
-
-    def get_classes(slot)
-      classes = []
-      classes << "selected_course" if slot == 8
-      classes.empty? ? nil : classes.join(" ")
     end
 
     def times

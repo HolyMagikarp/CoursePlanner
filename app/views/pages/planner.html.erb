@@ -5,15 +5,15 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
     $("#hint a").tooltip()
+
+    load_lectures_into_calendar()
 </script>
 
 <%= render partial: 'course_listing', object: @courses %>
 
 <div class="row">
   <div class="col-md-8">
-    <%= calendar @date do |date| %>
-      <%= date.day %>
-    <% end %>
+    <%= calendar %>
   </div>
 </div>
 
