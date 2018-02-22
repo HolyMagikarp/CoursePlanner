@@ -1,9 +1,92 @@
 /* mixins, variables, etc. */
 
+$light_blue: #2dc0d3;
+$navy: #33475a;
+$dark_gray: #333333;
+$royal_blue: #09536b;
+$light_gray: #e3e7e9;
+$green: #4cba7f;
+$red: #ed353e;
+$yellow: #fdb713;
+$gray1: #dae6ec;
+$gray2: #bfc9cf;
+$gray3: #98a8b3;
+$gray4: #66747d;
+$gray5: #3b4450;
+$gray6: #445468;
 $gray-medium-light: #eaeaea;
+$disabled: #999999;
 
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+// Notification colors
+$success_green: #2ab573;
+$error_red: #e93740;
+$warning_yellow: #fcb614;
+$info_dark_navy: #435265;
+
+$semibold: 600;
+$main_font: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600italic,400italic,700italic,600);
+
+body {
+  font-family: $main_font;
+  font-weight: $semibold;
+  font-size: 13pt;
+  color: $gray5;
+}
+
+.table-fixed{
+  height: 400px !important;
+  overflow-y: scroll;
+
+  thead {
+    overflow-y: auto;
+  }
+
+  tbody {
+    height: 230px;
+    overflow-y: auto;
+  }
+
+  thead, tbody{
+    display: block;
+  }
+
+  tbody td, thead > tr> th {
+    float: left;
+  }
+}
+
+body table.default {
+  tr {
+    &:first-child {
+      td, th {
+        &:first-child {
+          border-top-left-radius: 2px;
+        }
+        &:last-child {
+          border-top-right-radius: 2px;
+        }
+      }
+    }
+
+    &:last-child {
+      td, th {
+        &:first-child {
+          border-bottom-left-radius: 2px;
+        }
+        &:last-child {
+          border-bottom-right-radius: 2px;
+        }
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: white;
+    }
+
+    &:nth-child(even) {
+      background-color: #F9F9F9;
+    }
+  }
 }
