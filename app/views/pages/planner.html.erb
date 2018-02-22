@@ -4,10 +4,25 @@
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
-    $("#hint a").tooltip()
+
+    $(function() {
+        $("#courses_search input").keyup(function() {
+            $.get($("#courses_search").attr("action"), $("#courses_search").serialize(), null, "script");
+            return false;
+        });
+    });
+    $("#courses").html("<%= escape_javascript(render("course_listing")) %>");
 </script>
 
-<%= render partial: 'course_listing', object: @courses %>
+<%= form_tag planner_path, :method => 'get', :id => "courses_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+    </p>
+
+    <div id="courses">
+      <%= render partial: 'course_listing' %>
+    </div>
+<% end %>
 
 <div class="row">
   <div class="col-md-8">
