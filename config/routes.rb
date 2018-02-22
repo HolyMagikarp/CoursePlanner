@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get :planner
     get :program_requirements
     get :_course_listing
-    get :lectures
+    get :enrolled_lectures
   end
 
   get 'users/new'
