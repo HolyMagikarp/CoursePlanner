@@ -20,7 +20,7 @@ second_year:
   ]
 
 later_years:
-  descripttion: '3.0 FCE of 200/300/400 level CSC courses'
+  description: '3.0 FCE of 200/300/400 level CSC courses'
   credits: 3.0
   courses: [
   ]
